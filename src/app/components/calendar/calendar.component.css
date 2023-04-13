@@ -42,9 +42,8 @@ header {
 }
 
 .month-table {
-  size-adjust: inherit;
   border-collapse: collapse;
-  width: 100%;
+  width: auto;
   font-weight: bold
 }
 
