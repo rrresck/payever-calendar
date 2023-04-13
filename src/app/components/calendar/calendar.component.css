@@ -42,6 +42,7 @@ header {
 }
 
 .month-table {
+  display: flex;
   border-collapse: collapse;
   width: 100%;
   font-weight: bold
