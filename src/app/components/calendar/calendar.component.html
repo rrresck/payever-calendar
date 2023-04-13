@@ -1,0 +1,97 @@
+<head>
+  <title>PAYEVER CALENDAR TEST</title>
+</head>
+<header>PAYEVER CALENDAR TEST - ANGULAR 15 - CREATED BY RAFAEL RODRIGUES RESCK
+</header>
+<div class="container">
+  <div class="calendar">
+    <button
+      class="createEvent"
+      mat-raised-button
+      color="primary"
+      (click)="openModal()"
+    >
+      Create Event
+    </button>
+    <mat-card class="mat-card">
+      <mat-calendar
+        [(selected)]="dateSelected"
+        (selectedChange)="onDateChange($event)"
+        (monthSelected)="changeMonth($event)"
+      ></mat-calendar>
+    </mat-card>
+  </div>
+
+  <table class="month-table">
+    <thead>
+      <tr>
+        <th *ngFor="let dayName of daysOfWeek">{{ dayName }}</th>
+      </tr>
+    </thead>
+    <tbody cdkDropListGroup>
+      <tr *ngFor="let week of daysOfMonth">
+        <td
+          *ngFor="let day of week"
+          [class.has-events]="eventsForDay(day).length > 0"
+          cdkDropList
+          (cdkDropListDropped)="onDrop($event, day.toString())"
+        >
+          <span *ngIf="day" class="day-number">
+            {{ day }}
+            <mat-chip *ngIf="eventsForDay(day).length > 0" color="primary">
+              {{ eventsForDay(day).length }}
+            </mat-chip>
+          </span>
+          <div class="events">
+            <div
+              *ngFor="let event of eventsForDay(day)"
+              class="event"
+              cdkDrag
+              [cdkDragData]="event"
+            >
+
+          >
+              <button
+                (click)="removeEvent(event)"
+                mat-icon-button
+                color="red"
+              >
+                <mat-icon>loop</mat-icon>
+              </button>
+              <button (click)="removeEvent(event)" mat-icon-button color="red">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <mat-icon color="red">loop</mat-icon>You can use to move event!
+  </div>
+  <h2>Events in {{ dateSelected | date }}</h2>
+  <div *ngIf="eventsdateSelected().length === 0">
+    <h3>No events</h3>
+  </div>
+  <div
+    *ngFor="let item of eventsdateSelected(); trackBy: trackByIndex"
+    class="listEvent"
+  >
+    <span>
+      {{ item.event.title }}
+    </span>
+    <button (click)="removeEvent(item.event)" mat-icon-button color="red">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="footer">
+  <p>My Social Network</p><br/>
+</div>
+<div class="footer">
+  <a href="https://github.com/rrresck?tab=repositories" target="_blank"><mat-icon>account_box</mat-icon>GitHub</a>
+  <a href="https://www.linkedin.com/in/rafael-resck-dev/" target="_blank"><mat-icon>account_box</mat-icon>LinkedIn</a>
+</div>
+

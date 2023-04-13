@@ -1,0 +1,36 @@
+<div #modal>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="form">
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="title" placeholder="Title" />
+      <mat-error *ngIf="eventForm.controls['title'].errors?.['required']">
+        Title is required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="dateEvent"
+        placeholder="Insert Date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Description"
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!eventForm.valid"
+    >
+      Create Event
+    </button>
+  </form>
+</div>

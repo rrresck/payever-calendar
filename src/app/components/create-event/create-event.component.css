@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  min-width: -webkit-fill-available;
+  margin: 15px;
+  background-color: rgb(212, 205, 205);
+  font-weight: bold;
+}
+
+mat-form-field {
+  width: 70%;
+  font-weight: bold;
+}
